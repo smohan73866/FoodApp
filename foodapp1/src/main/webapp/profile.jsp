@@ -52,9 +52,8 @@
   String name=(String)request.getAttribute("name");
   String phone=(String)request.getAttribute("phone");
   String email=(String)request.getAttribute("email");
-  String image=(String)request.getAttribute("image");
   %>
-    <img src="<%=image %>" alt="Profile Picture" />
+    
     <h2><%=name %></h2>
     <p><strong>Phone:</strong> <%=phone %></p>
     <p><strong>Email:</strong> <%=email %></p>

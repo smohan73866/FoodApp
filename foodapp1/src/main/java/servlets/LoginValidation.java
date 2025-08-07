@@ -3,13 +3,15 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.tap.DAOimpl.UserDAOimpl;
+import com.tap.models.User;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/callingLoginValidation")
 public class LoginValidation  extends HttpServlet {
@@ -36,8 +38,14 @@ public class LoginValidation  extends HttpServlet {
 			
 			
 			
+			
 			if(password.equals(ogPass))
-			{
+			{	
+				UserDAOimpl udo=new UserDAOimpl();
+				User u=udo.getData(name);
+				
+				req.setAttribute("user", u);
+				
 
 				RequestDispatcher rd=req.getRequestDispatcher("home");
 				rd.include(req, resp);

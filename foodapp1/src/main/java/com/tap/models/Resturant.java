@@ -11,6 +11,7 @@ public class Resturant {
 	private String rating;
 	private String isactive;
 	private String imagepath;
+	
 	public Resturant() {
 		super();
 	}
@@ -28,6 +29,8 @@ public class Resturant {
 		this.isactive = isactive;
 		this.imagepath = imagepath;
 	}
+	
+	
 	public int getResturantid() {
 		return resturantid;
 	}

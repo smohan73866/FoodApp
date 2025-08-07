@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="com.tap.models.Cart,com.tap.models.CartItem" %>
+    <%@ page import="com.tap.models.Cart,com.tap.models.CartItem,com.tap.models.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -229,7 +229,7 @@ text-align:center;
        class="btn add-more-items-btn">Add More Items</a>
 </div>
 
-<form action="final.jsp" method="post" style="text-align: center; margin-top: 20px;">
+<form action="order.jsp" method="post" style="text-align: center; margin-top: 20px;">
     <button type="submit" style="background-color: green; color: white; padding: 10px 25px; border: none; border-radius: 5px; cursor: pointer;">
         Place Order
     </button>

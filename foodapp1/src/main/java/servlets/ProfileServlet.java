@@ -2,8 +2,8 @@ package servlets;
 
 import java.io.IOException;
 
-import com.tap.DAOimpl.UserDataimpl;
-import com.tap.models.Data;
+import com.tap.DAOimpl.UserDAOimpl;
+import com.tap.models.User;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -19,7 +19,7 @@ public class ProfileServlet extends HttpServlet{
 	{
 		resp.setContentType("text/html");
 		System.out.println("profile servlet");
-		UserDataimpl udo=new UserDataimpl();
+		UserDAOimpl udo=new UserDAOimpl();
 		String name=(String)req.getParameter("name");
 		
 		if(name.equals("null"))
@@ -30,21 +30,18 @@ public class ProfileServlet extends HttpServlet{
 		}
 		
 		else {
-		Data d=udo.getData(name);
+		User u=udo.getData(name);
 		
-		String phone=d.getPhonenumber();
-		String email=d.getEmail();
-		String image=d.getImage();
+		String phone=u.getPhonenumber();
+		String email=u.getEmail();
 		
 		System.out.println(name);
 		System.out.println(phone);
 		System.out.println(email);
-		System.out.println(image);
 		
 		req.setAttribute("name", name);
 		req.setAttribute("phone", phone);
 		req.setAttribute("email", email);
-		req.setAttribute("image", image);
 		
 		RequestDispatcher rd=req.getRequestDispatcher("profile.jsp");
 		rd.forward(req, resp);

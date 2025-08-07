@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%@ page import="java.util.List ,com.tap.models.Resturant,com.tap.models.Data" %>
+    <%@ page import="java.util.List ,com.tap.models.Resturant,com.tap.models.User" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +14,36 @@
       margin: 0;
       padding: 0;
     }
+    
+    .top-right-navbar a {
+      text-decoration: none;
+      color: white;
+      margin-left: 20px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s ease;
+    }
+
+    
+
+    .top-right-navbar a span.icon {
+      margin-right: 6px;
+      font-size: 18px;
+    }
+
+    .top-right-navbar a.profile {
+      font-weight: bold;
+    }
+    .top-right-navbar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      background-color: #008b8f;
+      padding: 12px 20px;
+      border-bottom-left-radius: 10px;
+    }
 
     body {
       font-family: Arial, sans-serif;
@@ -21,17 +51,7 @@
     }
 
     /* Navbar */
-    .navbar {
-      background-color: #fff;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+    
 
     .navbar .logo {
       font-size: 1.5rem;
@@ -56,7 +76,6 @@
     }
 
     h1 {
-      text-align: center;
       margin: 30px 0;
       color: #333;
     }
@@ -117,35 +136,45 @@
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">FoodExpress</div>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="cart">Cart</a></li>
-      <li><a href="login.html">Login</a></li>
+  <h1>Popular Restaurants</h1>
+  <div class="top-right-navbar">
+    <a href="home"><span class="icon">🏠</span>Home</a>
+    <a href="cart"><span class="icon">🛒</span>Cart</a>
+    <a href="login.html"><span class="icon">🔐</span>Login</a>
+    <a href="orderservlet"><span class="icon">📦</span>Orders</a>
+  
+
       
       <% 
+      
+      User u;
+      
+      
       String name;
       String check;
+      
       int num=(Integer)request.getAttribute("num");
       String login=(String)request.getAttribute("login");
       if("TRUE".equals(login))
       {
+      u=(User)request.getAttribute("user");
       name=(String)request.getAttribute("name");
       check=(String)request.getAttribute("check");
+      session.setAttribute("user",u);
       session.setAttribute("name",name);
       session.setAttribute("check",check);
       session.setAttribute("login",login);
       }
       
       else{
-    	  
+      
+      u=(User)session.getAttribute("user");
       name=(String)session.getAttribute("name");
       check=(String)session.getAttribute("check");
       }
       
       %>
-      <li><a href="profile?name=<%= name %>">
+      <a href="profile?name=<%= name %>"><span class="icon">👤</span>
       <%
       
       
@@ -160,16 +189,16 @@
       
       else{
     	  %>
-    	  Profile</a></li>
+    	  Profile</a>
     	  <% 
       }
       %>
       
     </ul>
-  </nav>
-  
+  </div>
+  <br>
 
-  <h1>Popular Restaurants Near You</h1>
+  
   
   
 

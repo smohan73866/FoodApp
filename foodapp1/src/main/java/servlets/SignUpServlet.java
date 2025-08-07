@@ -3,8 +3,8 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import com.tap.DAOimpl.UserDataimpl;
-import com.tap.models.Data;
+import com.tap.DAOimpl.UserDAOimpl;
+import com.tap.models.User;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -25,15 +25,14 @@ public class SignUpServlet extends HttpServlet {
 		String password=req.getParameter("password");
 		String phonenumber=req.getParameter("phonenumber");
 		String email=req.getParameter("email");
-		String image=req.getParameter("image");
 		
 		PrintWriter out=resp.getWriter();
 		
 		
-		Data d=new Data(name,password,phonenumber,email,image);
-		UserDataimpl udi=new UserDataimpl();
+		User u=new User(name,password,email,phonenumber);
+		UserDAOimpl udi=new UserDAOimpl();
 		
-		if(udi.isNamePresent(d,name))
+		if(udi.isNamePresent(u,name))
 		{
 			out.println("Name already registerd try with other name");
 			RequestDispatcher rd=req.getRequestDispatcher("signup.html");
@@ -41,7 +40,7 @@ public class SignUpServlet extends HttpServlet {
 			
 		}
 		
-		udi.addData(d);
+		udi.addData(u);
 		
 		
 		out.println("Account Created Successfully");

@@ -15,39 +15,38 @@ import com.util.DBConnection;
 
 public class UserDAOimpl implements userDAO {
 	
-	String Query1="insert into `user`(name,username,password,email,phonenumber,address,role,createdate,lastlogindate) values(?,?,?,?,?,?,?,?,?)";
+	static String Query1="insert into `user`(name,password,email,phonenumber,createdate) value(?,?,?,?,?)";
+
 	
-	@Override
-	public void addUser(User u) {
-		
-		
-		
+	public void addData(User u) 
+	{
 		
 		try(Connection con=DBConnection.getConnection();
-			PreparedStatement pstmt=con.prepareStatement(Query1);)
-		{
+		
+		PreparedStatement pstmt= con.prepareStatement(Query1);) {
 			
 			
-			pstmt.setString(1, u.getName());
-			pstmt.setString(2, u.getUsername());
-			pstmt.setString(3, u.getPassword());
-			pstmt.setString(4, u.getEmail());
-			pstmt.setString(5, u.getPhonenumber());
-			pstmt.setString(6, u.getAddress());
-			pstmt.setString(7,u.getRole());
-			pstmt.setTimestamp(8, new Timestamp(System.currentTimeMillis()));
-			pstmt.setTimestamp(9, new Timestamp(System.currentTimeMillis()));
+			pstmt.setString(1,u.getName());
+			pstmt.setString(2,u.getPassword());
+			pstmt.setString(3,u.getEmail());
+			pstmt.setString(4,u.getPhonenumber());
+			pstmt.setTimestamp(5, new Timestamp(System.currentTimeMillis()));			
 			
 			
 			int i=pstmt.executeUpdate();
 			System.out.println(i);
+			
+			
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		
+		
 	}
-
+	
 	@Override
 	public User getUser(int userId) {
 		String Query2="SELECT * FROM `user` WHERE `userid` = ?";
@@ -158,7 +157,134 @@ public class UserDAOimpl implements userDAO {
 		}
 		return usersList;
 	}
+	
+	public String findName(User u)
+	{
+		String Query6="select `name` from `user` where name=?";
+try(Connection con=DBConnection.getConnection();
+				
+				PreparedStatement pstmt= con.prepareStatement(Query6);) {
+					
+					
+					pstmt.setString(1,u.getName());
+					
+					
+					ResultSet res=pstmt.executeQuery();
+					
+					while(res.next()==true)
+					{
+						String name=res.getString("name");
+						return name;
+						
+					}
+					
+					
+					
+					
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+	
+	return null;
+	
+	}
+	
+	public String findData(User u)
+	{
+		
+		String Query7="select `password` from `user` where name=?";		
+		try(Connection con=DBConnection.getConnection();
+				
+				PreparedStatement pstmt= con.prepareStatement(Query7);) {
+					
+					
+					pstmt.setString(1,u.getName());
+					
+					
+					ResultSet res=pstmt.executeQuery();
+					
+					while(res.next()==true)
+					{
+						String password=res.getString("password");
+						return password;
+						
+					}
+					
+					
+					
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+	
+	return null;
+	}
+	
+	public boolean isNamePresent(User u,String name) {
+		 String Query8="select `name` from `user` where name=?";
+		
+	    try(Connection con=DBConnection.getConnection();
+					
+		PreparedStatement pstmt= con.prepareStatement(Query8);) {
+						
+						
+						pstmt.setString(1,u.getName());
+						
+						
+						ResultSet res=pstmt.executeQuery();
+						
+						while(res.next()==true)
+						{
+							String name1=res.getString("name");
+							if(name1.equals(name))
+							{
+								return true;
+							}
+							
+						}
+						
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return false;
+		
 
+
+		}
+	
+public User getData(String name1) {
+		
+		String Query="select * from `user` where name=?";
+		User u=null;
+		
+		Connection con=DBConnection.getConnection();
+		try {
+			PreparedStatement pstmt=con.prepareStatement(Query);
+			pstmt.setString(1, name1);
+			
+			ResultSet res=pstmt.executeQuery();
+			
+			
+			while(res.next())
+			{	
+				int userId=res.getInt("userid");
+				String phone=res.getString("phonenumber");
+				String email=res.getString("email");
+				
+				u=new User(userId,name1,phone,email);
+			}
+			
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return u;
+	}
+	
 	
 
 }

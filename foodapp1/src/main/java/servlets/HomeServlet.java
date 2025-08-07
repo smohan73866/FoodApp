@@ -6,6 +6,8 @@ import java.util.List;
 
 import com.tap.DAOimpl.ResturantDAOimpl;
 import com.tap.models.Resturant;
+import com.tap.models.User;
+import com.tap.models.User;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -39,6 +41,10 @@ public class HomeServlet extends HttpServlet{
 		req.setAttribute("login", login);
 		num++;
 		login="hi";
+		
+		User u=(User)req.getAttribute("user");
+		req.setAttribute("user", u);
+		
 		
 		
 		

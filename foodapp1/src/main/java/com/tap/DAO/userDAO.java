@@ -6,7 +6,6 @@ import com.tap.models.User;
 
 public interface userDAO {
 	
-	 public void addUser(User u);
 	 public User getUser(int userId);
 	 public void updateUser(User u);
 	 public void deleteUser(int userId);

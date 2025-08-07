@@ -61,6 +61,32 @@ public class User {
 		this.address = address;
 		this.role = role;
 	}
+	
+	public User(String name)
+	{
+		this.name=name;	}
+	
+	
+
+	public User(int userid,String name, String phonenumber,String email) {
+		super();
+		this.userid=userid;
+		this.name = name;
+		this.phonenumber = phonenumber;
+		this.email = email;
+	}
+
+
+
+	public User(String name, String password, String email, String phonenumber) {
+		super();
+		this.name = name;
+		this.password = password;
+		this.email = email;
+		this.phonenumber = phonenumber;
+	}
+
+
 
 	public User(String name, String username, String password, String email, String phonenumber, String address,
 			String role, Timestamp createdate, Timestamp lastlogindate) {
@@ -150,7 +176,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", username=" + username + ", password=" + password + ", email=" + email
+		return "User [userid "+userid+"name=" + name + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", phonenumber=" + phonenumber + ", address=" + address + ", role=" + role + ", createdate="
 				+ createdate + ", lastlogindate=" + lastlogindate + "]";
 	}

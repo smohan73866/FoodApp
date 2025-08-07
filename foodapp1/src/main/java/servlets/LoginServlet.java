@@ -3,8 +3,9 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.tap.DAOimpl.UserDAOimpl;
 import com.tap.DAOimpl.UserDataimpl;
-import com.tap.models.Data;
+import com.tap.models.User;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -28,14 +29,14 @@ public class LoginServlet extends HttpServlet{
 		
 		PrintWriter out=resp.getWriter();
 		
-		Data d=new Data(name);
-		UserDataimpl udi=new UserDataimpl();
+		User u=new User(name);
+		UserDAOimpl udi=new UserDAOimpl();
 		
-		String ogName=udi.findName(d);
+		String ogName=udi.findName(u);
 		
 		if(name.equals(ogName))
 		{
-		String ogPass=udi.findData(d);
+		String ogPass=udi.findData(u);
 		
 		req.setAttribute("ogPass", ogPass);
 		req.setAttribute("login", login);

@@ -35,7 +35,7 @@ public class LaunchUser {
 		User u=new User(name,username,password,email,phonenumber,address,role);
 		
 		 UserDAOimpl udo=new UserDAOimpl();
-		 udo.addUser(u);
+		 
 		
 		
 		

@@ -6,15 +6,44 @@ public class Order {
 	
 	private int orderid;
 	private int resturantid;
+	private String resturantName;
 	private int userid;
 	private Timestamp orderdate;
-	private int totalamount;
+	private Double totalamount;
 	private String status;
 	private String paymentmode;
 	public Order() {
 		super();
 	}
-	public Order(int orderid, int resturantid, int userid, int totalamount, String status, String paymentmode) {
+	
+	
+	public Order(int orderid, int resturantid,String resturantName,Timestamp orderdate, Double totalamount, String status) {
+		super();
+		this.orderid = orderid;
+		this.resturantid = resturantid;
+		this.orderdate = orderdate;
+		this.totalamount = totalamount;
+		this.status = status;
+		this.resturantName=resturantName;
+	}
+
+
+	public String getResturantName() {
+		return resturantName;
+	}
+
+
+	public void setResturantName(String resturantName) {
+		this.resturantName = resturantName;
+	}
+
+
+	public void setTotalamount(Double totalamount) {
+		this.totalamount = totalamount;
+	}
+
+
+	public Order(int orderid, int resturantid, int userid, double totalamount, String status, String paymentmode) {
 		super();
 		this.orderid = orderid;
 		this.resturantid = resturantid;
@@ -23,7 +52,18 @@ public class Order {
 		this.status = status;
 		this.paymentmode = paymentmode;
 	}
-	public Order(int orderid, int resturantid, int userid, Timestamp orderdate, int totalamount, String status,
+	
+	
+	
+	public Order(int resturantid, int userid, double totalamount, String status, String paymentmode) {
+		super();
+		this.resturantid = resturantid;
+		this.userid = userid;
+		this.totalamount = totalamount;
+		this.status = status;
+		this.paymentmode = paymentmode;
+	}
+	public Order(int orderid, int resturantid, int userid, Timestamp orderdate, double totalamount, String status,
 			String paymentmode) {
 		super();
 		this.orderid = orderid;
@@ -58,10 +98,10 @@ public class Order {
 	public void setOrderdate(Timestamp orderdate) {
 		this.orderdate = orderdate;
 	}
-	public int getTotalamount() {
+	public double getTotalamount() {
 		return totalamount;
 	}
-	public void setTotalamount(int totalamount) {
+	public void setTotalamount(double totalamount) {
 		this.totalamount = totalamount;
 	}
 	public String getStatus() {

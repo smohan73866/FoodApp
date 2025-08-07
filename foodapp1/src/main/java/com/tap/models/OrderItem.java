@@ -6,12 +6,32 @@ public class OrderItem {
 	private int orderid;
 	private int menuid;
 	private int quantity;
-	private float totalamount;
+	private double totalamount;
 	
 	public OrderItem() {
 		super();
 	}
-	public OrderItem(int orderitemid, int orderid, int menuid, int quantity, float totalamount) {
+	
+	
+	
+	public OrderItem(int menuid, int quantity) {
+		super();
+		this.menuid = menuid;
+		this.quantity = quantity;
+	}
+
+
+
+	public OrderItem(int orderid, int menuid, int quantity, double totalamount) {
+		super();
+		this.orderid = orderid;
+		this.menuid = menuid;
+		this.quantity = quantity;
+		this.totalamount = totalamount;
+	}
+
+
+	public OrderItem(int orderitemid, int orderid, int menuid, int quantity, double totalamount) {
 		super();
 		this.orderitemid = orderitemid;
 		this.orderid = orderid;
@@ -43,7 +63,7 @@ public class OrderItem {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public float getTotalamount() {
+	public double getTotalamount() {
 		return totalamount;
 	}
 	public void setTotalamount(int totalamount) {

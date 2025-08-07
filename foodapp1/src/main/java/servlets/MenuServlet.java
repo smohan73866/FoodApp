@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.tap.DAOimpl.MenuDAOimpl;
 import com.tap.models.Menu;
-import com.tap.models.Resturant;
+import com.tap.models.User;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -31,6 +31,9 @@ public class MenuServlet extends HttpServlet{
 		}
 		
 		
+		HttpSession session=req.getSession();
+		User u=(User) session.getAttribute("user");
+		System.out.println("login user  : "+ u);
 		
 		System.out.println("Hi from menu Servlet");
 		System.out.println(resturantid);

@@ -10,6 +10,7 @@ public class Menu {
 	private String isavailable;
 	private String rating;
 	private String imagepath;
+	private int quantity;
 	public Menu() {
 		super();
 	}
@@ -24,6 +25,27 @@ public class Menu {
 		this.isavailable = isavailable;
 		this.rating = rating;
 		this.imagepath = imagepath;
+	}
+	
+	
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public Menu(int menuid, int resturantid, String itemname, String description, int price, String isavailable,
+			String rating, String imagepath, int quantity) {
+		super();
+		this.menuid = menuid;
+		this.resturantid = resturantid;
+		this.itemname = itemname;
+		this.description = description;
+		this.price = price;
+		this.isavailable = isavailable;
+		this.rating = rating;
+		this.imagepath = imagepath;
+		this.quantity = quantity;
 	}
 	public int getMenuid() {
 		return menuid;
