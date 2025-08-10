@@ -74,8 +74,11 @@ public class PlaceOrder extends HttpServlet{
 			OrderItem orderitem=new OrderItem(orderid,menuid,quantity,totalPrice);
 			
 			orderItemDAO.addOrderItem(orderitem);
+			
 		}
-		
+		System.out.println("Place Order Servlet");
+		System.out.println(totalAmount);
+		session.setAttribute("total", totalAmount);
 		session.removeAttribute("cart");
 		session.setAttribute("order", orderid);
 		
